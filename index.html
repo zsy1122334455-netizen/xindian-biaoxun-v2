@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>新点标讯</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0D5EFA",
+              "primary-dark": "#0047CC",
+              "primary-light": "#8EABFF",
+              accent: "#00D2BA",
+              "bg-page": "#F8FAFC",
+              "border-blue": "#D8E3FA",
+              "label-bg": "#F1F6FF",
+              "text-main": "#0F172A",
+              "text-sec": "#64748B",
+            },
+            fontFamily: {
+              sans: ["Source Han Sans CN", "Noto Sans SC", "system-ui", "sans-serif"],
+              numbers: ["OPPOSans", "Roboto", "sans-serif"],
+            },
+            boxShadow: {
+              soft: "0 4px 20px -2px rgba(13, 94, 250, 0.08)",
+              float: "0 10px 40px -10px rgba(13, 94, 250, 0.15)",
+              card: "0 2px 8px -2px rgba(0, 0, 0, 0.05)",
+            },
+            padding: {
+              'safe-bottom': 'env(safe-area-inset-bottom)',
+            }
+          },
+        },
+      };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <style>
+      body {
+        -webkit-tap-highlight-color: transparent;
+        background-color: #F8FAFC;
+      }
+      *::-webkit-scrollbar {
+        display: none;
+      }
+      * {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translate(-50%, -40%); }
+        to { opacity: 1; transform: translate(-50%, -50%); }
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.3s ease-out forwards;
+      }
+      .mobile-container .min-h-screen {
+        min-height: 100% !important;
+      }
+      .mobile-container .h-screen {
+        height: 100% !important;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="no-scrollbar">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
