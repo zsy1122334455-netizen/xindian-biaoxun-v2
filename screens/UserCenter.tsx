@@ -33,8 +33,8 @@ export const UserCenter: React.FC<UserCenterProps> = ({ onNavigate, userRole, se
         className="bg-[#4A84FF] pt-[calc(env(safe-area-inset-top,0px)+32px)] pb-12 px-4 cursor-pointer hover:bg-[#3D77F2] active:bg-[#3169E6] transition-all"
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <div className="relative">
+          <div className="flex items-center space-x-4 min-w-0 flex-1 mr-4">
+            <div className="relative shrink-0">
               <div className="w-16 h-16 rounded-full flex items-center justify-center border border-white/60 bg-white/5 shadow-inner">
                 <User size={32} className="text-white" strokeWidth={1.5} />
               </div>
@@ -44,27 +44,27 @@ export const UserCenter: React.FC<UserCenterProps> = ({ onNavigate, userRole, se
                 </div>
               )}
             </div>
-            <div>
+            <div className="flex flex-col justify-center min-w-0 flex-1">
               <div className="flex items-center">
-                <h1 className="text-xl font-bold text-white tracking-tight">ID: {displayName}</h1>
+                <h1 className="text-xl font-bold text-white tracking-tight leading-[1.2] truncate">ID: {displayName}</h1>
               </div>
               {userRole === UserRole.FREE && (
-                <p className="text-sm text-white/90 mt-1 font-medium">
-                  未开通 · 享受更多高级特性
+                <p className="text-sm text-white/90 mt-1 font-medium leading-[1.35] truncate">
+                  免费会员
                 </p>
               )}
               {userRole !== UserRole.FREE && membership?.expiryDate && (
-                <p className="text-xs text-white/90 mt-1 flex items-center gap-1.5 font-medium">
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-300 animate-pulse"></span>
-                  有效期至：{membership.expiryDate}
+                <p className="text-xs text-white/90 mt-1 flex items-center gap-1.5 font-medium leading-[1.35] min-w-0">
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-300 animate-pulse shrink-0"></span>
+                  <span className="truncate">有效期至：{membership.expiryDate}</span>
                 </p>
               )}
             </div>
           </div>
 
-          <div className="flex items-center space-x-1 text-white/90 hover:text-white transition-all text-xs font-semibold bg-white/10 hover:bg-white/15 active:scale-95 px-3 py-1.5 rounded-full shadow-sm select-none">
+          <div className="flex items-center justify-center space-x-1 text-white/90 hover:text-white transition-all text-xs font-semibold bg-white/10 hover:bg-white/15 active:scale-95 px-3 py-1.5 rounded-full shadow-sm select-none text-center whitespace-nowrap shrink-0">
             <span>会员中心</span>
-            <ChevronRight size={12} className="opacity-90 mt-0.5" />
+            <ChevronRight size={12} className="opacity-90 shrink-0" />
           </div>
         </div>
       </header>
