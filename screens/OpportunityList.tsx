@@ -918,7 +918,6 @@ export const OpportunityList: React.FC<Props> = ({ onNavigate: propOnNavigate, o
   const filterCounts = getFilterCounts();
   const isSearchActive = searchQuery.trim() !== '';
   const isFilterActiveAny = filterCounts.totalCount >= 1;
-  const hasResults = filteredOpportunities.length > 0;
 
   const clearAllFilters = () => {
     setSelectedCities(prev => prev.length === 0 ? prev : []);
@@ -956,15 +955,6 @@ export const OpportunityList: React.FC<Props> = ({ onNavigate: propOnNavigate, o
   };
 
   const handleAddToSubscription = () => {
-    if (!hasResults) {
-      if (showToast) {
-        showToast('暂无匹配结果，无法加入订阅');
-      } else {
-        setToast({ show: true, message: '暂无匹配结果，无法加入订阅' });
-        setTimeout(() => setToast({ show: false, message: '' }), 2500);
-      }
-      return;
-    }
     if (isVipMoreFilterLocked) {
       setToast({ show: true, message: '请选择已购地市后再加入订阅，或升级 SVIP 筛全国' });
       setTimeout(() => setToast({ show: false, message: '' }), 2500);
@@ -2419,17 +2409,8 @@ export const OpportunityList: React.FC<Props> = ({ onNavigate: propOnNavigate, o
               })()}
             </div>
             <button 
-              className={`text-[#1677FF] text-[13px] font-medium flex items-center gap-1 hover:opacity-80 active:scale-95 transition-transform cursor-pointer ${!hasResults ? 'opacity-40 cursor-not-allowed !text-gray-400' : ''}`}
+              className="text-[#1677FF] text-[13px] font-medium flex items-center gap-1 hover:opacity-80 active:scale-95 transition-transform cursor-pointer"
               onClick={() => {
-                if (!hasResults) {
-                  if (showToast) {
-                    showToast('暂无可导出的数据');
-                  } else {
-                    setToast({ show: true, message: '暂无可导出的数据' });
-                    setTimeout(() => setToast({ show: false, message: '' }), 2000);
-                  }
-                  return;
-                }
                 if (userRole === UserRole.FREE) {
                   onShowPaymentModal?.('EXPORT_LOCKED');
                 } else {
@@ -2537,21 +2518,16 @@ export const OpportunityList: React.FC<Props> = ({ onNavigate: propOnNavigate, o
                   <div className="flex flex-col gap-2 w-full max-w-[240px]">
                     <button 
                       onClick={() => {
-                        clearAllFilters();
-                        handleSearch('');
+                        if (isFilterActiveAny) {
+                          clearAllFilters();
+                        } else {
+                          handleSearch('');
+                        }
                       }}
                       className="w-full py-2.5 bg-[#1677FF] hover:bg-[#4096ff] text-white text-[14px] font-semibold rounded-lg shadow-sm active:scale-95 transition-all cursor-pointer"
                     >
-                      清除筛选
+                      {isFilterActiveAny ? '清除筛选' : '清除搜索'}
                     </button>
-                    {hasResults && (
-                      <button 
-                        onClick={handleAddToSubscription}
-                        className="w-full py-2.5 bg-blue-50 hover:bg-blue-100 text-[#1677FF] text-[14px] font-semibold rounded-lg shadow-sm active:scale-95 transition-all cursor-pointer"
-                      >
-                        将当前条件加入订阅
-                      </button>
-                    )}
                   </div>
                 </div>
               ) : (

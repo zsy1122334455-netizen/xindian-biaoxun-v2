@@ -123,7 +123,7 @@ export const Home: React.FC<HomeProps> = ({
     if (showToast) {
       showToast('正在退出，返回主应用...');
     } else {
-      alert('已退出「新点标讯」子应用并返回主应用');
+      alert('已退出子应用并返回主应用');
     }
   };
 
@@ -320,7 +320,7 @@ export const Home: React.FC<HomeProps> = ({
 
           {/* Centered Tool Name with precise balance */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[18px] font-bold tracking-wide text-white select-none pointer-events-none">
-            新点标讯
+            
           </div>
 
           {/* Right Notification Bell */}
